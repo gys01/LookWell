@@ -11,6 +11,7 @@ public class PreliminaryPrrangement {
     private Room room;
     private Chapter chapter;
 
+
     @Override
     public String toString() {
         return "PreliminaryPrrangement{" +
