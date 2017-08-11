@@ -11,15 +11,6 @@ public class GradeName {
 
     private Project project;           //外键：产品id
 
-    @Override
-    public String toString() {
-        return "GradeName{" +
-                "granamId=" + granamId +
-                ", maxNum=" + maxNum +
-                ", project=" + project +
-                '}';
-    }
-
     public Integer getGranamId() {
         return granamId;
     }
@@ -44,14 +35,15 @@ public class GradeName {
         this.project = project;
     }
 
-    public GradeName(Integer granamId, Integer maxNum, Project project) {
-
-        this.granamId = granamId;
-        this.maxNum = maxNum;
-        this.project = project;
-    }
-
     public GradeName() {
-
+    }
+  
+    @Override
+    public String toString() {
+        return "GradeName{" +
+                "granamId=" + granamId +
+                ", maxNum=" + maxNum +
+                ", project=" + project +
+                '}';    
     }
 }

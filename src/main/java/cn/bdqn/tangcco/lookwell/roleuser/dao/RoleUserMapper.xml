@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bdqn.tangcco.lookwell.roleuser.dao.RoleUserMapper">
+    <resultMap id="roleUserMap" type="cn.bdqn.tangcco.lookwell.entity.RoleUser">
+        <id column="roluse_id" property="roluseId"></id>
+        <result column="roluse_desc" property="roluseDesc"></result>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="role" resultMap="roleMap" javaType="Role"></association>
+        <association property="tbuser" resultMap="tbuserMap" javaType="Tbuser"></association>
+    </resultMap>
+
+    <resultMap id="roleMap" type="cn.bdqn.tangcco.lookwell.entity.Role">
+        <id column="role_id" property="roleId"></id>
+        <result column="role_name" property="roleName"></result>
+        <result column="role_level" property="roleLevel"></result>
+    </resultMap>
+    <resultMap id="tbuserMap" type="cn.bdqn.tangcco.lookwell.entity.Tbuser">
+        <id column="user_id" property="userId"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+    </resultMap>
+
+    <select id="queryUserByUsernameAndPassword" resultMap="roleUserMap" parameterType="Tbuser">
+        SELECT
+            u.user_id,
+            u.username,
+            ru.role_id
+            FROM tbuser u, role_user ru
+            WHERE u.user_id=ru.user_id
+            AND u.username=#{username}
+            AND u.password=#{password}
+    </select>
+
+</mapper>  
