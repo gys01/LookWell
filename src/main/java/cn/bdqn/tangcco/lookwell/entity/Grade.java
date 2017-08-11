@@ -19,6 +19,8 @@ public class Grade {
 
     private Date updateTime;        //最后修改时间
 
+    private Project project;
+
     public Integer getGradeId() {
         return gradeId;
     }
@@ -65,6 +67,14 @@ public class Grade {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public Grade() {

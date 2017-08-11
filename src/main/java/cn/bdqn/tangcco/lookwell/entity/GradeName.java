@@ -9,7 +9,7 @@ public class GradeName {
 
     private Integer maxNum;         //最大编号
 
-    private Grade grade;           //外键：班级id
+    private Project project;           //外键：产品id
 
     public Integer getGranamId() {
         return granamId;
@@ -27,12 +27,12 @@ public class GradeName {
         this.maxNum = maxNum;
     }
 
-    public Grade getGrade() {
-        return grade;
+    public Project getProject() {
+        return project;
     }
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public GradeName() {
@@ -43,7 +43,7 @@ public class GradeName {
         return "GradeName{" +
                 "granamId=" + granamId +
                 ", maxNum=" + maxNum +
-                ", grade=" + grade +
+                ", project=" + project +
                 '}';
     }
 }
