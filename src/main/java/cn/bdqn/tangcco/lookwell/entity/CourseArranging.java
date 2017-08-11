@@ -1,35 +1,39 @@
 package cn.bdqn.tangcco.lookwell.entity;
 
+import java.util.Date;
+
 /**
- * Created by 99117 on 2017/8/6.
+ * Created by HP on 2017/8/11.
  */
-public class PreliminaryPrrangement {
-    private Integer paId;
+public class CourseArranging {
+    private Integer arrangingId;
     private Grade grade;
     private Time time;
     private Teacher teacher;
     private Room room;
     private Chapter chapter;
+    private Date arrangingDate;
 
 
     @Override
     public String toString() {
-        return "PreliminaryPrrangement{" +
-                "paId=" + paId +
+        return "CourseArranging{" +
+                "arrangingId=" + arrangingId +
                 ", grade=" + grade +
                 ", time=" + time +
                 ", teacher=" + teacher +
                 ", room=" + room +
                 ", chapter=" + chapter +
+                ", arrangingDate=" + arrangingDate +
                 '}';
     }
 
-    public Integer getPaId() {
-        return paId;
+    public Integer getArrangingId() {
+        return arrangingId;
     }
 
-    public void setPaId(Integer paId) {
-        this.paId = paId;
+    public void setArrangingId(Integer arrangingId) {
+        this.arrangingId = arrangingId;
     }
 
     public Grade getGrade() {
@@ -72,17 +76,26 @@ public class PreliminaryPrrangement {
         this.chapter = chapter;
     }
 
-    public PreliminaryPrrangement() {
-
+    public Date getArrangingDate() {
+        return arrangingDate;
     }
 
-    public PreliminaryPrrangement(Integer paId, Grade grade, Time time, Teacher teacher, Room room, Chapter chapter) {
+    public void setArrangingDate(Date arrangingDate) {
+        this.arrangingDate = arrangingDate;
+    }
 
-        this.paId = paId;
+    public CourseArranging(Integer arrangingId, Grade grade, Time time, Teacher teacher, Room room, Chapter chapter, Date arrangingDate) {
+
+        this.arrangingId = arrangingId;
         this.grade = grade;
         this.time = time;
         this.teacher = teacher;
         this.room = room;
         this.chapter = chapter;
+        this.arrangingDate = arrangingDate;
+    }
+
+    public CourseArranging() {
+
     }
 }

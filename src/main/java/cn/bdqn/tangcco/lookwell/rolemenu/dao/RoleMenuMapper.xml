@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bdqn.tangcco.lookwell.rolemenu.dao.RoleMenuMapper">
+    <resultMap id="roleMenuMap" type="cn.bdqn.tangcco.lookwell.entity.Menu">
+        <id column="menu_id" property="menuId"></id>
+        <result column="menu_name" property="text"></result>
+        <result column="menu_url" property="menuUrl"></result>
+        <result column="parent_id" property="parentId"></result>
+    </resultMap>
+
+    <!--树形一级菜单-->
+    <select id="queryMenuByRoleId" resultMap="roleMenuMap" parameterType="Integer">
+        SELECT
+            m.menu_name,
+            m.menu_url,
+            m.parent_id,
+            rm.menu_id
+            FROM menu m, role_menu rm
+            WHERE m.menu_id=rm.menu_id
+            AND m.parent_id=0
+            AND rm.role_id=#{roleId}
+    </select>
+
+    <!--树形二级菜单-->
+    <select id="queryMenuByParentId" resultMap="roleMenuMap">
+        SELECT
+            m.menu_name,
+            m.menu_url,
+            rm.menu_id
+            FROM menu m, role_menu rm
+            WHERE m.menu_id=rm.menu_id
+            AND m.parent_id=#{parentId}
+            AND rm.role_id=#{roleId}
+    </select>
+
+</mapper>
