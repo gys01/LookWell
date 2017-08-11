@@ -37,13 +37,12 @@ public class GradeName {
 
     public GradeName() {
     }
-
+  
     @Override
     public String toString() {
         return "GradeName{" +
                 "granamId=" + granamId +
                 ", maxNum=" + maxNum +
                 ", project=" + project +
-                '}';
-    }
+                '}';    
 }
