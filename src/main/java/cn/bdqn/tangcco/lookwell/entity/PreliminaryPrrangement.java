@@ -1,17 +1,27 @@
 package cn.bdqn.tangcco.lookwell.entity;
 
-import java.util.List;
-
 /**
  * Created by 99117 on 2017/8/6.
  */
 public class PreliminaryPrrangement {
     private Integer paId;
-    private List<Grade> gradeList;
-    private List<Time> timeList;
-    private List<Teacher> teacherList;
-    private List<Room> roomList;
-    private List<Chapter> chapterList;
+    private Grade grade;
+    private Time time;
+    private Teacher teacher;
+    private Room room;
+    private Chapter chapter;
+
+    @Override
+    public String toString() {
+        return "PreliminaryPrrangement{" +
+                "paId=" + paId +
+                ", grade=" + grade +
+                ", time=" + time +
+                ", teacher=" + teacher +
+                ", room=" + room +
+                ", chapter=" + chapter +
+                '}';
+    }
 
     public Integer getPaId() {
         return paId;
@@ -21,68 +31,57 @@ public class PreliminaryPrrangement {
         this.paId = paId;
     }
 
-    public List<Grade> getGradeList() {
-        return gradeList;
+    public Grade getGrade() {
+        return grade;
     }
 
-    public void setGradeList(List<Grade> gradeList) {
-        this.gradeList = gradeList;
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 
-    public List<Time> getTimeList() {
-        return timeList;
+    public Time getTime() {
+        return time;
     }
 
-    public void setTimeList(List<Time> timeList) {
-        this.timeList = timeList;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
-    public List<Teacher> getTeacherList() {
-        return teacherList;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherList(List<Teacher> teacherList) {
-        this.teacherList = teacherList;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
-    public List<Room> getRoomList() {
-        return roomList;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomList(List<Room> roomList) {
-        this.roomList = roomList;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public List<Chapter> getChapterList() {
-        return chapterList;
+    public Chapter getChapter() {
+        return chapter;
     }
 
-    public void setChapterList(List<Chapter> chapterList) {
-        this.chapterList = chapterList;
-    }
-
-    @Override
-    public String toString() {
-        return "PreliminaryPrrangement{" +
-                "paId=" + paId +
-                ", gradeList=" + gradeList +
-                ", timeList=" + timeList +
-                ", teacherList=" + teacherList +
-                ", roomList=" + roomList +
-                ", chapterList=" + chapterList +
-                '}';
-    }
-
-    public PreliminaryPrrangement(Integer paId, List<Grade> gradeList, List<Time> timeList, List<Teacher> teacherList, List<Room> roomList, List<Chapter> chapterList) {
-        this.paId = paId;
-        this.gradeList = gradeList;
-        this.timeList = timeList;
-        this.teacherList = teacherList;
-        this.roomList = roomList;
-        this.chapterList = chapterList;
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
     }
 
     public PreliminaryPrrangement() {
 
+    }
+
+    public PreliminaryPrrangement(Integer paId, Grade grade, Time time, Teacher teacher, Room room, Chapter chapter) {
+
+        this.paId = paId;
+        this.grade = grade;
+        this.time = time;
+        this.teacher = teacher;
+        this.room = room;
+        this.chapter = chapter;
     }
 }
