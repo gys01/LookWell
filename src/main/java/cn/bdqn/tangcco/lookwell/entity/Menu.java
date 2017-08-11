@@ -5,7 +5,7 @@ import java.util.Date;
 public class Menu {
     private Integer menuId;
 
-    private String menuName;
+    private String text;//为简化传值，给属性menu_name取别名text
 
     private String menuUrl;
 
@@ -23,12 +23,12 @@ public class Menu {
         this.menuId = menuId;
     }
 
-    public String getMenuName() {
-        return menuName;
+    public String getText() {
+        return text;
     }
 
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getMenuUrl() {
@@ -67,7 +67,7 @@ public class Menu {
     public String toString() {
         return "Menu{" +
                 "menuId=" + menuId +
-                ", menuName='" + menuName + '\'' +
+                ", text='" + text + '\'' +
                 ", menuUrl='" + menuUrl + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
