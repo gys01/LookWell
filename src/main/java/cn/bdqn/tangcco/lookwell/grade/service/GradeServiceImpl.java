@@ -6,7 +6,7 @@ import cn.bdqn.tangcco.lookwell.gradename.dao.GradeNameMapper;
 import cn.bdqn.tangcco.lookwell.tools.PageUtil;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class GradeServiceImpl implements GradeService {
 
-    @Resource
+    @Inject
     private GradeMapper gradeMapper;
 
     //按班级名模糊查询并分页展示
@@ -90,7 +90,7 @@ public class GradeServiceImpl implements GradeService {
 
 
     //添加班级名称唯一策略
-    @Resource
+    @Inject
     private GradeNameMapper gradeNameMapper;
 
     /**

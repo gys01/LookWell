@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.Map;
 @RequestMapping(value = "grade")
 public class GradeController {
 
-    @Resource
+    @Inject
     private GradeService gradeService;
 
     @RequestMapping(value = "toGradeList", method = RequestMethod.GET)
