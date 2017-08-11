@@ -14,6 +14,7 @@ public class CourseArranging {
     private Chapter chapter;
     private Date arrangingDate;
 
+
     @Override
     public String toString() {
         return "CourseArranging{" +
