@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.bdqn.tangcco.lookwell.grade.dao.GradeMapper">
+
+    <resultMap id="gradeMap" type="cn.bdqn.tangcco.lookwell.entity.Grade">
+        <id column="grade_id" property="gradeId" jdbcType="INTEGER"></id>
+        <result column="grade_name" property="gradeName" jdbcType="VARCHAR"></result>
+        <result column="grade_desc" property="gradeDesc" jdbcType="VARCHAR"></result>
+        <result column="grade_status" property="gradeStatus" jdbcType="VARCHAR"></result>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <association property="project" resultMap="projectMap" javaType="Project"></association>
+    </resultMap>
+
+    <!--<resultMap id="preliminaryMap" type="cn.bdqn.tangcco.lookwell.entity.PreliminaryPrrangement">-->
+        <!--<id column="pa_id" property="paId" jdbcType="INTEGER"></id>-->
+        <!--<association property="grade" resultMap="gradeMap" javaType="Grade"></association>-->
+        <!--<association property="chapter" resultMap="chapterMap" javaType="Chapter"></association>-->
+    <!--</resultMap>-->
+    <!--<resultMap id="chapterMap" type="cn.bdqn.tangcco.lookwell.entity.Chapter">-->
+        <!--<id column="chapter_id" property="chapterId" jdbcType="INTEGER"></id>-->
+        <!--<association property="course" resultMap="courseMap" javaType="Course"></association>-->
+    <!--</resultMap>-->
+    <!--<resultMap id="courseMap" type="cn.bdqn.tangcco.lookwell.entity.Course">-->
+        <!--<id column="course_id" property="courseId" jdbcType="INTEGER"></id>-->
+        <!--<association property="project" resultMap="projectMap" javaType="Project"></association>-->
+    <!--</resultMap>-->
+    <resultMap id="projectMap" type="cn.bdqn.tangcco.lookwell.entity.Project">
+        <id column="project_id" property="projectId" jdbcType="INTEGER"></id>
+        <result column="project_name" property="projectName" jdbcType="VARCHAR"></result>
+        <result column="project_version" property="projectVersion" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <!--按班级名查总记录数-->
+    <select id="queryCountGradeByName" resultType="Integer" >
+        SELECT
+            COUNT(1)
+            FROM  grade
+            <if test="gradeName!=null and gradeName!=''">
+                WHERE
+                grade_name LIKE concat('%',#{gradeName},'%')
+            </if>
+    </select>
+
+    <!--按班级名模糊查询并分页展示-->
+    <select id="queryGradeByName" resultMap="gradeMap">
+        SELECT
+            *
+            FROM grade
+            <if test="gradeName!=null and gradeName!=''">
+                WHERE
+                grade_name LIKE concat('%',#{gradeName},'%')
+            </if>
+            ORDER BY create_time DESC
+            limit #{start},#{rows}
+    </select>
+
+    <!--添加班级-->
+    <insert id="addGrade" keyColumn="grade_id" keyProperty="gradeId" useGeneratedKeys="true" parameterType="Grade">
+        INSERT INTO grade (
+            grade_name,
+            grade_desc,
+            grade_status,
+            create_time,
+            update_time,
+            project_id
+            ) VALUES (
+            #{gradeName},
+            #{gradeDesc},
+            #{gradeStatus},
+            #{createTime},
+            #{updateTime},
+            #{project.projectId}
+            )
+    </insert>
+
+    <!--按id查单个班级-->
+    <select id="queryGradeById" resultMap="gradeMap" parameterType="Integer">
+        SELECT
+            *
+            FROM grade
+            WHERE grade_id=#{gradeId}
+    </select>
+
+    <!--修改班级-->
+    <!--<update id="updateGrade" parameterType="Grade">
+        UPDATE grade
+            SET
+            grade_name=#{gradeName},
+            grade_desc =#{gradeDesc},
+            grade_status=#{gradeStatus},
+            create_time=#{createTime},
+            update_time=#{updateTime}
+            WHERE grade_id=#{gradeId}
+    </update>-->
+    <update id="updateGrade" parameterType="Grade">
+        UPDATE grade
+        <trim prefix="set" suffixOverrides=",">
+            <if test="gradeName!=null and gradeName!=''">
+                grade_name=#{gradeName},
+            </if>
+            <if test="gradeDesc!=null and gradeDesc!=''">
+                grade_desc =#{gradeDesc},
+            </if>
+            <if test="gradeStatus!=null and gradeStatus!=''">
+                grade_status=#{gradeStatus},
+            </if>
+            <if test="createTime!=null and createTime!=''">
+                create_time=#{createTime},
+            </if>
+            update_time=#{updateTime}
+        </trim>
+        WHERE grade_id=#{gradeId}
+    </update>
+
+    <!--删除单个班级-->
+    <delete id="deleteGradeById" parameterType="Integer">
+        DELETE
+            FROM grade
+            WHERE grade_id=#{gradeId}
+    </delete>
+
+    <!--删除多个班级-->
+    <delete id="deleteGradeByIdList">
+        DELETE
+            FROM grade
+            WHERE grade_id
+            IN
+            <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+    </delete>
+
+    <!--查询全部班级-->
+    <select id="queryAllGrade" resultMap="gradeMap">
+        SELECT
+        *
+        FROM grade
+        ORDER BY grade_name ASC
+    </select>
+
+</mapper>
