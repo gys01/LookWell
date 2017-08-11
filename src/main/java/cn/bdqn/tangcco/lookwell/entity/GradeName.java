@@ -45,4 +45,5 @@ public class GradeName {
                 ", maxNum=" + maxNum +
                 ", project=" + project +
                 '}';    
+    }
 }
